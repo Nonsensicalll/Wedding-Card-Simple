@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@0,400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="Lilas.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Audio Toggle Button (Hidden initially) -->
+    <button id="music-control" class="d-none" aria-label="Toggle Music">
+        <i id="music-icon" class="fa-solid fa-music"></i>
+    </button>
+    
+    <!--Cover Screen-->
+    <section id="cover-screen" class="min-vh-100 w-100 position-fixed top-0 start-0 z-3 d-flex flex-column justify-content-center align-items-center text-center text-white px-3">
+        <div class="container text-center" style="max-width: 700px;">
+            <p class="text-uppercase tracking-widest fs-1 text-white-50 mb-2">The Wedding Of</p>
+            <h1 class="display-1 font-serif fw-bold my-3" style="color: #d4af37 !important;">
+                Shin & Lena
+            </h1>
+            <p class="fs-4 text-white-50 mb-4">Have Yet To be Decided</p>
+            <div>
+                <p class="fs-5 text-white-50 mb-1">Kepada Saudara Sekalian</p>
+                <h4 id="guest-name" class="fw-semibold text-white mb-0 text-capitalize">
+                    Tamu Undangan
+                </h4>
+            </div>
+            <input type="text" id="guest-input" class="form-control mt-2 mb-2 mx-auto text-center" style="max-width:100px;" placeholder="Nama Anda">
+            <p id="error-msg" class="text-danger d-none">Maaf Anda Tidak Diundang.</p>
+            <button id="btn-open-invitation" class="btn btn-gold btn-lg rounded-pill px-4 py-2 mt-3 fw-semibold fs-2 shadow">
+                Open
+            </button>
+        </div>
+    </section>
+
+    <nav id="page-nav" class="fixed-top d-flex justify-content-center py-3 d-none" style="z-index: 1000;">
+        <ul class="nav nav-pills gap-2 p-1 rounded-pill"  style="backdrop-filter: blur(8px);" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-pill text-white" id="pills-countdown-tab" data-bs-toggle="pill" data-bs-target="#page-countdown" type="button" role="tab">Countdown</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-pill text-white" id="pills-address-tab" data-bs-toggle="pill" data-bs-target="#page-address" type="button" role="tab">Lokasi</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-pill text-white" id="pills-carousel-tab" data-bs-toggle="pill" data-bs-target="#page-carousel" type="button" role="tab">Galeri</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-pill text-white" id="pills-thankyou-tab" data-bs-toggle="pill" data-bs-target="#page-thankyou" type="button" role="tab">Thank You</button>
+            </li>
+        </ul>
+    </nav>
+    <div class="tab-content" id="pills-tabContent">
+
+    <!-- Countdown Page -->
+    <section id="page-countdown" class="tab-pane fade show active" role="tabpanel">
+        <div class="min-vh-100 w-100 d-flex flex-column align-items-center justify-content-center text-center text-white px-3">
+            <div class="container text-center" style="max-width: 700px">
+
+                <p class="display-1 text-uppercase font-serif fw-bold my-3 text-white">Countdown</p>
+
+                <div class="d-flex justify-content-center gap-3 my-4">
+                    
+                    <!-- Hari -->
+                    <div class="p-3 rounded-3" style="min-width: 100px">
+                        <h2 id="days" class="display-5 fw-bold my-0">00</h2>
+                        <p class="fs-5 text-uppercase text-white-50">Hari</p>
+                    </div>
+
+                    <!-- Jam -->
+                    <div class="p-3 rounded-3" style="min-width: 100px">
+                        <h2 id="hours" class="display-5 fw-bold my-0">00</h2>
+                        <p class="fs-5 text-uppercase text-white-50">Jam</p>
+                    </div>
+
+                    <!-- Menit -->
+                    <div class="p-3 rounded-3" style="min-width: 100px">
+                        <h2 id="minutes" class="display-5 fw-bold my-0">00</h2>
+                        <p class="fs-5 text-uppercase text-white-50">Menit</p>
+                    </div>
+
+                    <!-- Detik -->
+                    <div class="p-3 rounded-3" style="min-width: 100px">
+                        <h2 id="seconds" class="display-5 fw-bold my-0">00</h2>
+                        <p class="fs-5 text-uppercase text-white-50">Detik</p>
+                    </div>
+                </div>
+                <p class="fs-3 text-white fw-bold font-serif fw-3">Sampai Jumpa Di Lokasi</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- Address Page -->
+    <section id="page-address" class="tab-pane fade show active" role="tabpanel">
+        <div class="min-vh-100 w-100 d-flex flex-column align-items-center justify-content-center text-center text-white px-3">
+            <div class="container text-center" style="max-width: 700px">
+                <p class="display-1 fw-bold text-uppercase white-text font-serif my-3">Alamat Tempat Acara</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56282.15797365007!2d136.90720583689287!3d35.05176867034042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600378c76a4fdecd%3A0x676e6a6f576b0645!2sLEGOLAND%20Jepang!5e0!3m2!1sid!2sid!4v1792831385233!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <p class="fs-4 fw-bold text-uppercase white-text font-serif my-3"> 2-2-1 Kinjofuto, Minato-ku, Nagoya, Prefektur Aichi 455-8605, Jepang</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- Photo Carousel Page -->
+    <section id="page-carousel" class="tab-pane fade show active" role="tabpanel">
+        <div class="min-vh-100 w-100 d-flex flex-column align-items-center justify-content-center text-center text-white px-3">
+            <div class="container text-center" style="max-width: 700px">
+                <p class="display-1 fw-bold text-uppercase white-text font-serif my-3">Galeri</p>
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="ShinLena4.webp" class="d-block w-100" style="height: 450px; object-fit: contain;" alt="Picture 1">
+                            </div>
+                            <div class="carousel-item" active>
+                                <img src="ShinLena1.webp" class="d-block w-100" style="height: 450px; object-fit: contain;" alt="Picture 2">
+                            </div>
+                            <div class="carousel-item" active>
+                                <img src="ShinLena.webp" class="d-block w-100" style="height: 450px; object-fit: contain;" alt="Picture 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </section>
+        <!-- Thank You Page -->
+    <section id="page-thankyou" class="tab-pane fade show active" role="tabpanel">
+        <div class="min-vh-100 w-100 d-flex flex-column align-items-center justify-content-center text-center text-white px-3">
+            <div class="container text-center" style="max-width: 700px">
+                <p class="display-1 fw-bold text-uppercase white-text font-serif my-3">Terima Kasih Atas Waktunya</p>
+                <p class="fs-4 fw-bold text-uppercase white-text font-serif my-3"> We Look Forward To See You There!</p>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <script>
+        // Wait for DOM content to load
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Cover screen
+            const btnOpen = document.getElementById('btn-open-invitation'); //Open button
+            const coverScreen = document.getElementById('cover-screen');   // Cover screen
+            const bgMusic = document.getElementById('bg-music');           // Audio player
+            const musicControl = document.getElementById('music-control');   // The golden music button
+            const musicIcon = document.getElementById('music-icon');       // Music button icon
+            let isPlaying = false;                                           // Music playing state
+
+            // Guest list
+            const guestList = ["Aileen", "Andra", "Yoan", "Flo"];
+            const guestInput = document.getElementById('guest-input'); // Guest name input
+            const errorMsg = document.getElementById('error-msg'); // Error message
+
+            // If name is in the list or not
+            btnOpen.addEventListener('click', function () {
+                const typedName = guestInput.value.trim().toLowerCase(); // Guest name input
+                const isInvited = guestList.some(name =>name.toLowerCase() === typedName); // Check in list
+                if (isInvited) {
+                    errorMsg.classList.add('d-none');
+                    coverScreen.style.opacity = '0';
+                    coverScreen.style.visibility = 'hidden';
+                    document.getElementById('page-nav').classList.remove('d-none');
+                    musicControl.classList.remove('d-none');
+                    playAudio();
+                }else {
+                    errorMsg.classList.remove('d-none');
+                }
+            });
+
+            //Play Music Button
+            function playAudio() {
+                bgMusic.play().then(() => {
+                    isPlaying = true;                                       // Music playing state true
+                    musicIcon.classList.remove('fa-volume-xmark');           // Remove muted icon
+                    musicIcon.classList.add('fa-music');                    // Music icon
+                    musicControl.classList.add('spin-music');                // Start spining
+                }).catch(error => {
+                    console.log("Autoplay blocked by browser policy:", error); // Log autoplay restrictions
+                });
+            }
+
+            //Pause Music Button
+            function pauseAudio() {
+                bgMusic.pause();                                            // Pause music
+                isPlaying = false;                                          // Music playing state false
+                musicIcon.classList.remove('fa-music');                     // Remove music icon
+                musicIcon.classList.add('fa-volume-xmark');                  // Muted icon
+                musicControl.classList.remove('spin-music');             // Stop spining
+            }
+
+            //Click detection
+            musicControl.addEventListener('click', function () {
+                if (isPlaying) {
+                    pauseAudio();                                           // Pause if playing
+                } else {
+                    playAudio();                                            // Play if paused
+                }
+            });
+
+            // Countdown 
+            const weddingdate= new Date("Nov 12, 2026 09:00:00").getTime();
+            const timer = setInterval(function() {
+                const now = new Date().getTime(); //Current time
+                const distance = weddingdate - now; // Time difference
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("days").textContent = days; //Update time element
+                document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+                document.getElementById("minutes").textContent = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
+                if (distance < 0) { // If countdown finished 
+                clearInterval(timer);
+                document.getElementById("page-countdown").innerHTML = "<h2>Acara Sudah Berlangsung</h2>";
+                }
+            }, 1000);
+
+        });
+    </script>
+</body>
+</html>

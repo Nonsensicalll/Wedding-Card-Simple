@@ -1,0 +1,97 @@
+        /*For color which i dont use a lot*/
+        :root {
+            --primary-gold: #d4af37; 
+            --primary-white: #ffffff; /*text-white is better*/
+            --soft-bg: #09090b;
+        }
+
+        /*Body Settings*/
+        body {
+            font-family: 'Poppins', sans-serif; /*Primary font Poppins, second serif*/
+            background-color: var(--soft-bg);   /*Background decided in root*/
+            overflow: hidden;                   /*Disable scroll*/
+        }  
+        /*Font Serrif*/
+        .font-serif {
+            font-family: 'Playfair Display', serif; /*Font Dont Be Blind*/
+        }
+
+        /* Fullscreen Hero Cover Overlay */
+        #cover-screen {
+            background: linear-gradient(135deg, rgb(9, 9, 11) 0%, rgb(24, 24, 27) 60%, rgba(39, 39, 42, 1) 100%);
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; /*Transition*/
+        }
+
+        /*Spacing*/
+        .tracking-widest {
+            letter-spacing: 3px;
+        }
+
+        /* Gold Action Button Style */
+        .btn-gold {
+            background-color: var(--primary-gold); /* Gold background */
+            color: #ffffff;                        /* White text */
+            border: none;                          /* Remove default border */
+            transition: all 0.3s ease;             /* Smooth transition */
+        }
+
+        /* Hover State for Gold Button */   
+        .btn-gold:hover {
+            background-color: #b89528;                      /* Darker gold on hover */
+            color: #ffffff;                                 /* Keep text white */
+            transform: translateY(-2px);                    /* Lift up button */
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); /* Gold glow shadow */
+        }
+
+        /*The spinning golden music button*/
+        #music-control {
+            position: fixed;                          /* Fixed positioning on screen */
+            bottom: 25px;                             /* 25px from bottom */
+            right: 25px;                              /* 25px from right */
+            z-index: 1050;                            /* Keep above all layers */
+            width: 48px;                              /* Button width */
+            height: 48px;                             /* Button height */
+            border-radius: 50%;                       /* Round circle shape */
+            background-color: var(--primary-gold);   /* Gold background */
+            color: #ffffff;                           /* White icon color */
+            border: none;                             /* Remove border */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);/* Soft shadow */
+            display: flex;                            /* Flexbox layout */
+            align-items: center;                      /* Center icon vertically */
+            justify-content: center;                  /* Center icon horizontally */
+            cursor: pointer;                          /* Pointer cursor */
+            transition: transform 0.3s ease;          /*Transition*/
+        }
+
+        /* Continuous Music Rotation Animation */
+        .spin-music {
+            animation: spin 4s linear infinite; /*Infinite spin 4second*/
+        }
+
+        /* Keyframes for Rotation */
+        @keyframes spin {
+            100% { transform: rotate(360deg); } /*Spin 360*/
+        }
+        /*Pages Backgound setting*/
+        #page-countdown {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('ShinLena2.webp') center/cover no-repeat;
+        }
+
+        #page-address{
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('ShinLena2.webp') center/cover no-repeat;
+        }
+
+        #page-carousel{
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('ShinLena2.webp') center/cover no-repeat;
+        }
+
+        #page-thankyou{
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('ShinLena2.webp') center/cover no-repeat;
+        }
+
+        /*Navbar gold color and transparent background*/ 
+        .nav-pills .nav-link.active,
+        .nav-pills .show > .nav-link {
+            background-color: transparent !important;
+            color: var(--primary-gold) !important;
+        }
